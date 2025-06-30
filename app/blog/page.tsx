@@ -20,7 +20,7 @@ const blogPosts = [
     author: "Dr. Sarah Johnson",
     date: "2024-01-15",
     category: "Noni Benefits",
-    image: "/placeholder.svg?height=300&width=400&text=Fresh+Noni+Fruit+on+Tree",
+    image: "/images/noni_pic1.png",
     readTime: "8 min read",
   },
   {
@@ -31,7 +31,7 @@ const blogPosts = [
     author: "Michael Chen",
     date: "2024-01-12",
     category: "Health Research",
-    image: "/placeholder.svg?height=300&width=400&text=Noni+Juice+Glass+with+Research+Papers",
+    image: "/images/noni_pic4.png",
     readTime: "6 min read",
   },
   {
@@ -42,7 +42,7 @@ const blogPosts = [
     author: "Emily Rodriguez",
     date: "2024-01-10",
     category: "Wellness Tips",
-    image: "/placeholder.svg?height=300&width=400&text=Morning+Noni+Juice+Routine",
+    image: "/images/noni_pic2.png",
     readTime: "5 min read",
   },
   {
@@ -53,30 +53,8 @@ const blogPosts = [
     author: "David Kim",
     date: "2024-01-08",
     category: "Superfruit Comparison",
-    image: "/placeholder.svg?height=300&width=400&text=Noni+vs+Other+Superfruits+Comparison",
+    image: "/images/noni_pic3.png",
     readTime: "7 min read",
-  },
-  {
-    id: 5,
-    title: "The Ancient Wisdom of Noni: Traditional Uses in Polynesian Culture",
-    excerpt:
-      "Explore the rich history of Noni fruit in traditional Polynesian medicine and how ancient wisdom meets modern wellness science.",
-    author: "Lisa Wang",
-    date: "2024-01-05",
-    category: "Traditional Medicine",
-    image: "/placeholder.svg?height=300&width=400&text=Polynesian+Noni+Traditional+Medicine",
-    readTime: "6 min read",
-  },
-  {
-    id: 6,
-    title: "Noni Juice for Natural Energy: A Healthy Alternative to Caffeine",
-    excerpt:
-      "Discover how Noni juice can provide sustained natural energy without the crash associated with caffeine and artificial stimulants.",
-    author: "James Wilson",
-    date: "2024-01-03",
-    category: "Natural Energy",
-    image: "/placeholder.svg?height=300&width=400&text=Energizing+Noni+Juice+Bottle",
-    readTime: "5 min read",
   },
 ]
 
@@ -86,8 +64,6 @@ const categories = [
   "Health Research",
   "Wellness Tips",
   "Superfruit Comparison",
-  "Traditional Medicine",
-  "Natural Energy",
 ]
 
 export default function BlogPage() {
@@ -106,7 +82,7 @@ export default function BlogPage() {
       <div className="mb-12">
         <div className="relative h-64 md:h-80 rounded-lg overflow-hidden">
           <Image
-            src="/placeholder.svg?height=320&width=1200&text=Noni+Juice+Wellness+Blog+Hero"
+            src="/images/noni_pic1.png"
             width={1200}
             height={320}
             alt="Noni juice bottles and fresh Noni fruit - AVT LLC wellness blog"
@@ -138,7 +114,7 @@ export default function BlogPage() {
       <Card className="mb-12 overflow-hidden">
         <div className="grid gap-6 lg:grid-cols-2">
           <Image
-            src="/placeholder.svg?height=300&width=400&text=Fresh+Noni+Fruit+on+Tree"
+            src="/images/noni_pic1.png"
             width={400}
             height={300}
             alt="Fresh Noni fruit growing on tree - Nature's superfruit elixir"
@@ -287,6 +263,20 @@ export default function BlogPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Company Logo Footer */}
+      <div className="mt-16 text-center">
+        <div className="flex justify-center mb-4">
+          <Image
+            src="/images/avt_llc_logo.png"
+            width={200}
+            height={80}
+            alt="AVT LLC - Premium Noni Juice Company"
+            className="h-16 md:h-20 w-auto"
+          />
+        </div>
+        <p className="text-sm text-muted-foreground">© 2024 AVT LLC. All rights reserved.</p>
+      </div>
     </div>
   )
 }

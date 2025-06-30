@@ -13,6 +13,16 @@ export default function HomePage() {
           <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
+                {/* Company Logo */}
+                <div className="flex justify-center lg:justify-start mb-6">
+                  <Image
+                    src="/images/avt_llc_logo.png"
+                    width={250}
+                    height={100}
+                    alt="AVT LLC - Premium Noni Juice Company"
+                    className="h-16 md:h-20 w-auto"
+                  />
+                </div>
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">Welcome to AVT LLC</h1>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
                   Discover natural, science-backed wellness products that support your health journey. We're committed
@@ -32,11 +42,11 @@ export default function HomePage() {
             </div>
             <div className="flex items-center justify-center">
               <Image
-                src="/placeholder.svg?height=400&width=600"
-                width={600}
+                src="/images/noni_organic.png"
+                width={500}
                 height={400}
-                alt="Hero Image"
-                className="aspect-video overflow-hidden rounded-xl object-cover"
+                alt="Premium Organic Noni Juice Products - AVT LLC"
+                className="w-full max-w-lg rounded-xl object-contain"
               />
             </div>
           </div>

@@ -1,21 +1,64 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
-import type { Metadata } from "next"
-
-export const metadata: Metadata = {
-  title: "Contact Us - Your Business",
-  description: "Get in touch with us for any questions or inquiries",
-}
+import Image from "next/image"
+import { useState } from "react"
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  })
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    const emailBody = `
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Subject: ${formData.subject}
+
+Message:
+${formData.message}
+    `.trim()
+
+    const mailtoLink = `mailto:coolesttiger86@gmail.com?subject=${encodeURIComponent(formData.subject || 'Contact from AVT LLC Website')}&body=${encodeURIComponent(emailBody)}`
+    
+    window.location.href = mailtoLink
+  }
+
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Header */}
       <div className="text-center mb-12">
+        {/* Company Logo */}
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/images/avt_llc_logo.png"
+            width={200}
+            height={80}
+            alt="AVT LLC - Premium Noni Juice Company"
+            className="h-16 md:h-20 w-auto"
+          />
+        </div>
         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">Contact Us</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
           We'd love to hear from you. Send us a message and we'll respond as soon as possible.
@@ -29,41 +72,87 @@ export default function ContactPage() {
             <CardTitle className="text-2xl">Send us a message</CardTitle>
             <CardDescription>Fill out the form below and we'll get back to you within 24 hours.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <Label htmlFor="first-name">First name</Label>
-                <Input id="first-name" placeholder="Enter your first name" />
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="firstName">First name</Label>
+                  <Input 
+                    id="firstName" 
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    placeholder="Enter your first name" 
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="lastName">Last name</Label>
+                  <Input 
+                    id="lastName" 
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    placeholder="Enter your last name" 
+                    required
+                  />
+                </div>
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="last-name">Last name</Label>
-                <Input id="last-name" placeholder="Enter your last name" />
+                <Label htmlFor="email">Email</Label>
+                <Input 
+                  id="email" 
+                  name="email"
+                  type="email" 
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Enter your email" 
+                  required
+                />
               </div>
-            </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="Enter your email" />
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone number</Label>
+                <Input 
+                  id="phone" 
+                  name="phone"
+                  type="tel" 
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Enter your phone number" 
+                />
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone number</Label>
-              <Input id="phone" type="tel" placeholder="Enter your phone number" />
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="subject">Subject</Label>
+                <Input 
+                  id="subject" 
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  placeholder="What is this regarding?" 
+                  required
+                />
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="subject">Subject</Label>
-              <Input id="subject" placeholder="What is this regarding?" />
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="message">Message</Label>
+                <Textarea 
+                  id="message" 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Tell us more about your inquiry..." 
+                  className="min-h-[120px]"
+                  required
+                />
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="message">Message</Label>
-              <Textarea id="message" placeholder="Tell us more about your inquiry..." className="min-h-[120px]" />
-            </div>
-
-            <Button className="w-full" size="lg">
-              Send Message
-            </Button>
+              <Button type="submit" className="w-full" size="lg">
+                Send Message
+              </Button>
+            </form>
           </CardContent>
         </Card>
 
